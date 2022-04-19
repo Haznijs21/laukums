@@ -6,10 +6,10 @@ function izvadaTekstu() {
         m2 = m.m2;
         m3 = m.m3;
         teksts = rezultats(m1, m2, m3);
-        p = lielumi(m1,m2,m3);
+        p = lielumi(m1, m2, m3);
         if (teksts) {
         } else {
-            
+
         }
         const sakne = document.getElementById("izvade");
         const raksti = document.createElement("p");
@@ -28,7 +28,7 @@ function lielumi(m1, m2, m3) {
 
     S = laukums(m1, m2, m3);
     console.log("Laukums: " + S);
-    return {p, pusper, S};
+    return { p, pusper, S };
 }
 
 function nolasa(m1, m2, m3) {
@@ -43,20 +43,29 @@ function rezultats(m1, m2, m3) {
     if (typeof m1 == 'number' && typeof m2 == 'number' && typeof m3 == 'number' && !isNaN(m1) && !isNaN(m2) && !isNaN(m3)) {
         if (m1 > 0 && m2 > 0 && m3 > 0) {
             if (m1 < m2 + m3 && m2 < m1 + m3 && m3 < m1 + m2) {
-                if(m1**2 + m2**2 == m3**2 || m2**2 + m3**2 == m1**2 || m1**2 + m3**2 == m2**2) {
+                if (m1 ** 2 + m2 ** 2 == m3 ** 2 || m2 ** 2 + m3 ** 2 == m1 ** 2 || m1 ** 2 + m3 ** 2 == m2 ** 2) {
                     console.log("Veidojas taisnleņķa trijstūris");
                     t = "Veidojas taisnleņķa trijstūris";
-                    p = perimetrs(m1,m2,m3);
+                    p = perimetrs(m1, m2, m3);
                     t += ";\nPerimetrs ir " + p;
-                    S = laukums(m1,m2,m3);
+                    S = laukums(m1, m2, m3);
                     t += ";\nLaukums ir " + S;
                     return t;
-                } else {
+                } else if (m1 == m2 || m2 == m3 || m3 == m1) {
+                    console.log("Veidojas Vienādsānu trijstūris");
+                    t = "Veidojas vienādsānu trijstūris";
+                    p = perimetrs(m1, m2, m3);
+                    t += ";\nPerimetrs ir " + p;
+                    S = laukums(m1, m2, m3);
+                    t += ";\nLaukums ir " + S;
+                    return t;
+                }
+                else {
                     console.log("Veidojas trijstūris");
                     t = "Veidojas trijstūris";
-                    p = perimetrs(m1,m2,m3);
+                    p = perimetrs(m1, m2, m3);
                     t += ";\nPerimetrs ir " + p;
-                    S = laukums(m1,m2,m3);
+                    S = laukums(m1, m2, m3);
                     t += ";\nLaukums ir " + S;
                     return t;
                 }
@@ -90,6 +99,6 @@ function pusperimetrs(m1, m2, m3) {
 
 function laukums(m1, m2, m3) {
     const pusper = pusperimetrs(m1, m2, m3);
-    let tlaukums = Math.sqrt(pusper * ((pusper - m1) * (pusper - m2) * (pusper - m3)));
+    let tlaukums = Math.round(Math.sqrt(pusper * ((pusper - m1) * (pusper - m2) * (pusper - m3))) * 100) / 100;
     return tlaukums;
 }
