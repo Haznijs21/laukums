@@ -39,11 +39,27 @@ function nolasa(m1, m2, m3) {
     return { m1, m2, m3 };
 }
 function rezultats(m1, m2, m3) {
-    const t = "";
+    var t = "";
     if (typeof m1 == 'number' && typeof m2 == 'number' && typeof m3 == 'number' && !isNaN(m1) && !isNaN(m2) && !isNaN(m3)) {
         if (m1 > 0 && m2 > 0 && m3 > 0) {
             if (m1 < m2 + m3 && m2 < m1 + m3 && m3 < m1 + m2) {
-                return true;
+                if(m1**2 + m2**2 == m3**2 || m2**2 + m3**2 == m1**2 || m1**2 + m3**2 == m2**2) {
+                    console.log("Veidojas taisnleņķa trijstūris");
+                    t = "Veidojas taisnleņķa trijstūris";
+                    p = perimetrs(m1,m2,m3);
+                    t += ";\nPerimetrs ir " + p;
+                    S = laukums(m1,m2,m3);
+                    t += ";\nLaukums ir " + S;
+                    return t;
+                } else {
+                    console.log("Veidojas trijstūris");
+                    t = "Veidojas trijstūris";
+                    p = perimetrs(m1,m2,m3);
+                    t += ";\nPerimetrs ir " + p;
+                    S = laukums(m1,m2,m3);
+                    t += ";\nLaukums ir " + S;
+                    return t;
+                }
             } else {
                 console.log("Trijstūris neveidojas");
                 t = "Trijstūris neveidojas";
